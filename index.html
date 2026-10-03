@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>次世代合同会社｜ウェブサイト制作・アプリ開発・インターネットサービス</title>
+<meta name="description" content="次世代合同会社は、ウェブサイト制作、アプリ開発、インターネットサービスの企画・運用を行う会社です。公開後も育ちつづける仕組みを、事業とともにつくります。">
+<meta name="theme-color" content="#141c33">
+<meta property="og:title" content="次世代合同会社">
+<meta property="og:description" content="ウェブサイト制作・アプリ開発・インターネットサービス。次の世代へ、育ちつづける仕組みを。">
+<meta property="og:type" content="website">
+<!-- 要確認：公開ドメイン確定後に og:url / og:image / canonical を追加してください -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 3'%3E%3Crect width='3' height='3' fill='%23141c33'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%23e9c349'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%23ebe7dc'/%3E%3Crect x='0' y='2' width='3' height='1' fill='%23ebe7dc'/%3E%3C/svg%3E">
+
+<!--
+================================================================
+  次世代合同会社 ブランドサイト デザイン案
+  ----------------------------------------------------------------
+  コンセプト：「世代」
+    社名の「世代」を、ライフゲーム（セル・オートマトン）の「世代」に重ねた。
+    たった二つの規則から、模様は世代を重ねて自ら動きはじめる。
+    ウェブサイトやアプリも公開がゴールではなく、次の世代へ更新されていくもの。
+    だから最初に「育ちつづけられる規則（構造・設計・運用の仕組み）」をつくる、という姿勢を表現。
+    ・ヒーロー：ライフゲームがリアルタイムで世代を重ねる（タップ／クリックでセルが誕生）
+    ・新しく生まれたセルは「菜の花色」、世代を重ねると「白練」に落ち着く
+    ・左端のスクロールレール：グライダー（ライフゲームで斜めに進む形）がページを下っていく
+    ・土地（所在地・地名）からの着想は採用していません
+
+  デプロイ：Cloudflare Pages（Direct Upload）
+    このファイル1枚をフォルダに入れてアップロードするだけで動作します。
+    ビルド不要／外部依存は Google Fonts と Unsplash 画像のみ。
+
+  ▼ 確認事項チェックリスト（公開前にすべてご確認ください）
+  [ ] 1. 代表者の役職名：合同会社のため「代表社員」と表記しています。登記上の表記をご確認ください。
+  [ ] 2. 代表者氏名の表記（「アシク　サイプルージャエド」）：区切り位置・表記ゆれをご確認ください。
+  [ ] 3. 代表メッセージは草稿です。代表者ご本人の確認・修正・承認後に公開してください。
+         （社名の由来に触れた一文は推測で書いています）
+  [ ] 4. 会社概要：設立年月日・資本金・従業員数・取引銀行・営業時間などは未確認のため掲載していません。
+  [ ] 5. 「インターネットサービス」の具体的な内容（サーバー・ドメイン管理／保守運用／デジタル施策など）を
+         実際の提供内容に合わせて修正してください。
+  [ ] 6. 電気通信事業法：自社で通信サービス（メール・メッセージ仲介等）を提供する場合、
+         総務省への電気通信事業の届出が必要になることがあります。該当有無をご確認ください。
+  [ ] 7. 特定商取引法：アプリ内課金やオンラインでの有料サービス販売を行う場合、
+         特定商取引法に基づく表記ページが必要です。
+  [ ] 8. 景品表示法：SNS・広告運用を支援する場合、ステルスマーケティング規制（2023年10月施行）への
+         配慮を表記するかご検討ください。
+  [ ] 9. プライバシーポリシー：アクセス解析等を導入する場合は掲載ページとフッターリンクを追加してください。
+  [ ] 10. 画像はすべて Unsplash のフリー素材（Unsplash License）の仮画像です。
+          実績写真・自社撮影写真への差し替えを推奨します。読み込めない場合は自動で代替表示に切り替わります。
+  [ ] 11. 制作実績の掲載可否（掲載する場合はセクション追加をご相談ください）。
+================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  /* 藍（夜明け前の画面）／白練（定着したセル）／菜の花（生まれたばかりのセル） */
+  --ai:#141c33;
+  --ai-deep:#0f1528;
+  --ai-raise:#1b2542;
+  --shiro:#ebe7dc;
+  --shiro-dim:rgba(235,231,220,.68);
+  --shiro-faint:rgba(235,231,220,.14);
+  --nanohana:#e9c349;
+  --haiao:#8190b0;
+
+  --serif:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --latin:"Jost","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+
+  --gutter:clamp(20px,5vw,72px);
+  --max:1180px;
+  --header-h:72px;
+}
+*,*::before,*::after{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ai);color:var(--shiro);
+  font-family:var(--sans);font-size:16px;line-height:1.9;letter-spacing:.04em;
+  -webkit-font-smoothing:antialiased;
+}
+body.is-locked{overflow:hidden}
+p,h1,h2,h3,dl,dd,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:lang(ja) p,:lang(ja) h1,:lang(ja) h2,:lang(ja) h3,:lang(ja) dd,:lang(ja) li{word-break:auto-phrase;text-wrap:pretty}
+.nw{display:inline-block}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:2px solid var(--nanohana);outline-offset:3px;border-radius:2px}
+
+.skip{
+  position:absolute;left:12px;top:-60px;z-index:200;background:var(--nanohana);color:var(--ai);
+  padding:10px 16px;font-weight:700;text-decoration:none;transition:top .2s;
+}
+.skip:focus{top:calc(12px + env(safe-area-inset-top,0px))}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+
+/* ---------- ヘッダー ---------- */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding-top:env(safe-area-inset-top,0px);
+  transition:background .4s,border-color .4s;
+  border-bottom:1px solid transparent;
+}
+.header.is-scrolled{background:rgba(15,21,40,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:var(--shiro-faint)}
+.header__inner{height:var(--header-h);display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo__mark{width:22px;height:22px;flex:none}
+.logo__text{font-family:var(--serif);font-weight:700;font-size:19px;letter-spacing:.14em;line-height:1}
+.logo__sub{display:block;font-family:var(--latin);font-weight:300;font-size:10.5px;letter-spacing:.24em;color:var(--haiao);margin-top:6px}
+.nav ul{display:flex;gap:clamp(18px,2.6vw,38px)}
+.nav a{font-size:13.5px;text-decoration:none;letter-spacing:.12em;padding:6px 0;position:relative;color:var(--shiro-dim);transition:color .25s}
+.nav a::after{content:"";position:absolute;left:0;bottom:0;width:6px;height:6px;background:var(--nanohana);opacity:0;transform:scale(.3);transition:opacity .25s,transform .25s}
+.nav a:hover,.nav a:focus-visible{color:var(--shiro)}
+.nav a:hover::after,.nav a:focus-visible::after{opacity:1;transform:scale(1)}
+.menu-btn{display:none;background:none;border:0;color:var(--shiro);width:48px;height:48px;cursor:pointer;position:relative;z-index:120}
+.menu-btn span{position:absolute;left:12px;right:12px;height:1.5px;background:currentColor;transition:transform .35s,opacity .25s}
+.menu-btn span:nth-child(1){top:18px}
+.menu-btn span:nth-child(2){top:24px}
+.menu-btn span:nth-child(3){top:30px}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* ---------- スクロールレール（グライダー） ---------- */
+.rail{
+  position:fixed;left:clamp(12px,1.6vw,26px);top:50%;transform:translateY(-50%);
+  height:56vh;width:22px;z-index:90;pointer-events:none;
+  opacity:0;transition:opacity .5s;
+}
+.rail.is-visible{opacity:1}
+.rail__track{position:absolute;left:10px;top:0;bottom:0;width:1px;background:repeating-linear-gradient(to bottom,var(--shiro-faint) 0 4px,transparent 4px 8px)}
+.rail__glider{position:absolute;left:0;top:0;width:22px;height:22px;will-change:transform}
+.rail__glider rect{fill:var(--shiro)}
+.rail__glider rect.is-new{fill:var(--nanohana)}
+.rail__gen{
+  position:absolute;left:1px;bottom:-54px;writing-mode:vertical-rl;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--haiao);white-space:nowrap;
+}
+
+/* ---------- ヒーロー ---------- */
+.hero{position:relative;height:100vh;height:100svh;min-height:600px;overflow:hidden;background:var(--ai-deep)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair;touch-action:manipulation}
+.hero__veil{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 46% 70% at 80% 48%,rgba(15,21,40,.92) 0%,rgba(15,21,40,.55) 55%,rgba(15,21,40,0) 100%),
+    linear-gradient(to top,rgba(15,21,40,.95) 0%,rgba(15,21,40,0) 34%);
+}
+.hero__title{
+  position:absolute;right:clamp(64px,13vw,210px);top:50%;transform:translateY(-52%);
+  writing-mode:vertical-rl;pointer-events:none;
+  font-family:var(--serif);font-weight:500;
+  font-size:clamp(34px,4.3vw,62px);line-height:1.7;letter-spacing:.2em;
+}
+.hero__title span{display:block;opacity:0;transform:translateY(-14px);animation:rise 1.1s cubic-bezier(.2,.7,.2,1) forwards}
+.hero__title span:nth-child(1){animation-delay:.3s}
+.hero__title span:nth-child(2){animation-delay:.55s;padding-top:1.2em}
+.hero__title span:nth-child(3){animation-delay:.8s;padding-top:2.4em}
+@keyframes rise{to{opacity:1;transform:none}}
+.hero__foot{
+  position:absolute;left:var(--gutter);right:var(--gutter);bottom:calc(36px + env(safe-area-inset-bottom,0px));
+  display:flex;justify-content:space-between;align-items:flex-end;gap:32px;pointer-events:none;
+}
+.hero__lead{max-width:30em;font-size:14.5px;line-height:2;color:var(--shiro-dim)}
+.hero__lead strong{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(17px,1.5vw,20px);color:var(--shiro);letter-spacing:.14em;margin-bottom:10px}
+.hero__meta{text-align:right;flex:none}
+.hero__gen{font-family:var(--mono);font-size:13px;color:var(--shiro);letter-spacing:.1em}
+.hero__gen b{font-weight:400;color:var(--nanohana);display:inline-block;min-width:4.2ch;text-align:left}
+.hero__hint{font-size:12px;color:var(--haiao);margin-top:6px}
+
+/* ---------- 共通セクション ---------- */
+.section{padding:clamp(96px,14vw,180px) 0;position:relative}
+.sec-head{display:flex;align-items:center;gap:16px;margin-bottom:clamp(40px,6vw,72px)}
+.sec-head__glyph{width:26px;height:26px;flex:none}
+.sec-head__glyph rect{fill:var(--shiro)}
+.sec-head__glyph rect.is-new{fill:var(--nanohana)}
+.sec-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.6vw,32px);letter-spacing:.16em;line-height:1.5}
+.sec-head .en{font-family:var(--latin);font-weight:300;font-size:13px;letter-spacing:.2em;color:var(--haiao);margin-left:auto}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+.reveal.is-in{opacity:1;transform:none}
+
+/* ---------- コンセプト ---------- */
+.concept__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(40px,7vw,110px);align-items:start}
+.concept__catch{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3.2vw,42px);line-height:1.7;letter-spacing:.12em;margin-bottom:36px}
+.concept__body p{color:var(--shiro-dim);max-width:34em}
+.concept__body p + p{margin-top:1.4em}
+.rules{margin-top:44px;border-top:1px solid var(--shiro-faint)}
+.rules div{display:grid;grid-template-columns:5.5em 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--shiro-faint)}
+.rules dt{font-family:var(--serif);font-weight:700;letter-spacing:.2em}
+.rules dt::before{content:"";display:inline-block;width:8px;height:8px;margin-right:10px;vertical-align:.12em;background:var(--shiro)}
+.rules div:first-child dt::before{background:var(--nanohana)}
+.rules dd{font-size:14.5px;color:var(--shiro-dim)}
+.diagram{background:var(--ai-raise);padding:clamp(28px,4vw,48px);position:sticky;top:calc(var(--header-h) + 32px)}
+.diagram svg{width:100%;height:auto;display:block;overflow:visible}
+.diagram .cell{fill:var(--shiro);opacity:0;transition:opacity .5s}
+.diagram .cell.is-new{fill:var(--nanohana)}
+.diagram .gridline{stroke:var(--shiro-faint);stroke-width:1;fill:none}
+.diagram .arrow{stroke:var(--haiao);stroke-width:1.2;fill:none;stroke-dasharray:3 4}
+.diagram .lbl{font-family:var(--mono);font-size:11px;fill:var(--haiao);letter-spacing:.06em}
+.diagram figcaption{margin-top:24px;font-size:13.5px;color:var(--shiro-dim);line-height:1.9}
+.diagram.is-in .cell{opacity:1}
+
+/* ---------- 事業内容 ---------- */
+.services{background:var(--ai-deep)}
+.services__intro{font-family:var(--serif);font-size:clamp(18px,1.8vw,22px);letter-spacing:.12em;line-height:2;max-width:36em;margin-bottom:clamp(56px,8vw,100px)}
+.svc{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(32px,6vw,90px);align-items:center}
+.svc + .svc{margin-top:clamp(80px,11vw,150px)}
+.svc:nth-of-type(even) .svc__media{order:2}
+.svc__media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--ai-raise)}
+.svc__media img{width:100%;height:100%;object-fit:cover;filter:saturate(.8) contrast(1.02)}
+.svc__media::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--ai-deep) 1px,transparent 1px),linear-gradient(90deg,var(--ai-deep) 1px,transparent 1px);
+  background-size:14px 14px;opacity:.18;mix-blend-mode:multiply;
+}
+.svc__icon{width:44px;height:44px;margin-bottom:22px}
+.svc__icon *{stroke:var(--nanohana);stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.svc h3{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.4vw,30px);letter-spacing:.14em;line-height:1.5}
+.svc__en{display:block;font-family:var(--latin);font-weight:300;font-size:13px;letter-spacing:.2em;color:var(--haiao);margin:6px 0 24px}
+.svc p{color:var(--shiro-dim);max-width:30em}
+.svc__tags{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:28px}
+.svc__tags li{font-size:13px;padding:5px 14px;border:1px solid var(--shiro-faint);color:var(--shiro);letter-spacing:.08em}
+
+/* ---------- 写真帯 ---------- */
+.band{position:relative;height:clamp(360px,62vh,620px);overflow:hidden;background:var(--ai-raise)}
+.band img{width:100%;height:118%;object-fit:cover;position:absolute;left:0;top:-9%;filter:saturate(.7) brightness(.72);will-change:transform}
+.band__veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,28,51,.82) 0%,rgba(20,28,51,.25) 60%,rgba(20,28,51,.1) 100%)}
+.band__text{position:absolute;left:var(--gutter);top:50%;transform:translateY(-50%);max-width:min(560px,80vw)}
+.band__text p:first-child{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3.4vw,44px);letter-spacing:.14em;line-height:1.6}
+.band__text p + p{margin-top:18px;color:var(--shiro-dim);font-size:15px}
+
+/* ---------- 進め方 ---------- */
+.flow{position:relative;padding-top:44px}
+.flow__steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px}
+.flow__line{position:absolute;left:0;right:0;top:0;height:40px;width:100%;overflow:visible}
+.flow__line path{stroke:var(--shiro-faint);stroke-width:1.2;fill:none}
+.flow__line .draw{stroke:var(--nanohana);stroke-dasharray:var(--len,1400);stroke-dashoffset:var(--len,1400);transition:stroke-dashoffset 2.4s cubic-bezier(.4,.1,.2,1)}
+.flow.is-in .flow__line .draw{stroke-dashoffset:0}
+.step{position:relative}
+.step::before{content:"";position:absolute;top:-50px;left:0;width:12px;height:12px;background:var(--ai);border:1.5px solid var(--shiro)}
+.step:last-child::before{background:var(--nanohana);border-color:var(--nanohana)}
+.step__no{font-family:var(--mono);font-size:12px;color:var(--haiao);letter-spacing:.1em}
+.step h3{font-family:var(--serif);font-weight:500;font-size:19px;letter-spacing:.14em;margin:8px 0 12px;line-height:1.5}
+.step p{font-size:14px;color:var(--shiro-dim);line-height:1.9}
+.flow__loop{margin-top:52px;display:flex;align-items:center;gap:14px;font-size:14px;color:var(--shiro-dim)}
+.flow__loop svg{width:36px;height:24px;flex:none}
+.flow__loop svg path{stroke:var(--nanohana);stroke-width:1.4;fill:none}
+
+/* ---------- メッセージ ---------- */
+.message{background:var(--ai-deep);overflow:hidden}
+.message__inner{display:flex;flex-direction:row-reverse;justify-content:center;gap:clamp(48px,6vw,96px);align-items:flex-start}
+.message__catch{
+  writing-mode:vertical-rl;font-family:var(--serif);font-weight:500;
+  font-size:clamp(28px,3vw,40px);letter-spacing:.2em;line-height:1.8;flex:none;
+}
+.message__catch span{display:block}
+.message__catch span + span{padding-top:1.5em}
+.message__body{
+  writing-mode:vertical-rl;font-family:var(--serif);font-size:16.5px;line-height:2.35;letter-spacing:.16em;
+  height:min(30em,64vh);max-width:100%;overflow-x:auto;color:var(--shiro-dim);
+}
+.message__body p + p{margin-right:1.6em}
+.message__sign{margin-right:3em;color:var(--shiro)}
+.message__sign small{display:block;font-size:13.5px;color:var(--haiao);letter-spacing:.2em}
+.message__sign span{display:block;margin-top:1.2em;font-size:19px;letter-spacing:.24em}
+
+/* ---------- 会社概要 ---------- */
+.profile__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(40px,7vw,110px);align-items:start}
+.profile__photo{aspect-ratio:3/4;overflow:hidden;background:var(--ai-raise);position:relative}
+.profile__photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.75) brightness(.9)}
+.profile__table{border-top:1px solid var(--shiro-faint)}
+.profile__table div{display:grid;grid-template-columns:8em 1fr;gap:20px;padding:24px 0;border-bottom:1px solid var(--shiro-faint)}
+.profile__table dt{font-size:14px;color:var(--haiao);letter-spacing:.16em}
+.profile__table dd{font-size:15.5px}
+.profile__table dd ul li{position:relative;padding-left:18px}
+.profile__table dd ul li::before{content:"";position:absolute;left:0;top:.8em;width:6px;height:6px;background:var(--shiro)}
+
+/* ---------- フッター ---------- */
+.footer{border-top:1px solid var(--shiro-faint);padding:64px 0 calc(40px + env(safe-area-inset-bottom,0px))}
+.footer__top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+.footer__nav ul{display:flex;flex-wrap:wrap;gap:12px 28px}
+.footer__nav a{font-size:13px;text-decoration:none;color:var(--shiro-dim)}
+.footer__nav a:hover{color:var(--shiro)}
+.footer__copy{margin-top:56px;font-family:var(--latin);font-weight:300;font-size:12px;letter-spacing:.14em;color:var(--haiao)}
+.to-top{background:none;border:1px solid var(--shiro-faint);color:var(--shiro);width:48px;height:48px;cursor:pointer;display:grid;place-items:center}
+.to-top svg{width:14px;height:14px}
+.to-top:hover{border-color:var(--nanohana)}
+
+/* 画像代替表示（読み込み失敗時） */
+.img-fallback{
+  background:
+    linear-gradient(135deg,rgba(233,195,73,.14),rgba(20,28,51,0) 60%),
+    radial-gradient(circle,var(--shiro-faint) 1.6px,transparent 2px) 0 0/16px 16px,
+    var(--ai-raise) !important;
+}
+.img-fallback img{display:none}
+
+/* ---------- レスポンシブ ---------- */
+@media (max-width:960px){
+  .concept__grid,.profile__grid{grid-template-columns:1fr}
+  .diagram{position:static}
+  .svc{grid-template-columns:1fr}
+  .svc:nth-of-type(even) .svc__media{order:0}
+  .flow{padding-top:0;padding-left:36px}
+  .flow__steps{grid-template-columns:1fr;gap:0}
+  .flow__line{display:none}
+  .flow::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--shiro-faint)}
+  .step{padding-bottom:36px}
+  .step::before{top:10px;left:-36px}
+  .profile__photo{aspect-ratio:16/9}
+}
+@media (max-width:768px){
+  :root{--header-h:64px}
+  .menu-btn{display:block}
+  .nav{
+    position:fixed;inset:0;background:var(--ai-deep);z-index:110;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;
+  }
+  .nav.is-open{opacity:1;visibility:visible}
+  .nav ul{flex-direction:column;align-items:center;gap:30px}
+  .nav a{font-family:var(--serif);font-size:20px;color:var(--shiro)}
+  .rail{display:none}
+  .hero__veil{background:linear-gradient(to top,rgba(15,21,40,.96) 0%,rgba(15,21,40,.6) 45%,rgba(15,21,40,.2) 100%)}
+  .hero__title{right:auto;left:var(--gutter);top:calc(var(--header-h) + 40px + env(safe-area-inset-top,0px));transform:none;writing-mode:horizontal-tb;font-size:clamp(30px,8.4vw,40px);line-height:1.55;letter-spacing:.1em}
+  .hero__title span:nth-child(n){padding-top:0;padding-left:0}
+  .hero__foot{flex-direction:column;align-items:flex-start;gap:20px}
+  .hero__meta{text-align:left}
+  .sec-head .en{display:none}
+  .message__inner{flex-direction:column;gap:40px}
+  .message__catch,.message__body{writing-mode:horizontal-tb;height:auto}
+  .message__catch span + span{padding-top:0}
+  .message__body p + p{margin-right:0;margin-top:1.4em}
+  .message__body{line-height:2.1;letter-spacing:.06em}
+  .message__sign{margin-right:0;margin-top:2.4em}
+  .profile__table div{grid-template-columns:1fr;gap:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .hero__title span{opacity:1;transform:none}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="header" id="header">
+  <div class="header__inner">
+    <a class="logo" href="#top" aria-label="次世代合同会社 トップへ">
+      <svg class="logo__mark" viewBox="0 0 3 3" aria-hidden="true">
+        <rect x="1" y="0" width=".86" height=".86" fill="#e9c349"/>
+        <rect x="2" y="1" width=".86" height=".86" fill="#ebe7dc"/>
+        <rect x="0" y="2" width=".86" height=".86" fill="#ebe7dc"/>
+        <rect x="1" y="2" width=".86" height=".86" fill="#ebe7dc"/>
+        <rect x="2" y="2" width=".86" height=".86" fill="#ebe7dc"/>
+      </svg>
+      <span>
+        <span class="logo__text">次世代合同会社</span>
+        <span class="logo__sub">Jisedai LLC</span>
+      </span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="globalNav" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="globalNav" aria-label="グローバルナビゲーション">
+      <ul>
+        <li><a href="#concept">コンセプト</a></li>
+        <li><a href="#services">事業内容</a></li>
+        <li><a href="#flow">進め方</a></li>
+        <li><a href="#message">メッセージ</a></li>
+        <li><a href="#company">会社概要</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- スクロールレール：グライダーがページを下っていく -->
+<div class="rail" id="rail" aria-hidden="true">
+  <div class="rail__track"></div>
+  <svg class="rail__glider" id="railGlider" viewBox="0 0 4 4"></svg>
+  <div class="rail__gen" id="railGen">世代 000</div>
+</div>
+
+<main id="main">
+  <!-- ヒーロー -->
+  <section class="hero" id="top" aria-label="メインビジュアル">
+    <canvas id="life" aria-hidden="true"></canvas>
+    <div class="hero__veil"></div>
+    <h1 class="hero__title">
+      <span>次の世代へ、</span>
+      <span>育ちつづける</span>
+      <span>仕組みを。</span>
+    </h1>
+    <div class="hero__foot">
+      <p class="hero__lead">
+        <strong>ウェブサイト制作・アプリ開発・<span class="nw">インターネットサービス</span></strong>
+        次世代合同会社は、事業のこれからを支えるウェブとアプリを、企画から公開後の運用まで一貫してつくる会社です。
+      </p>
+      <div class="hero__meta">
+        <p class="hero__gen" aria-live="off">世代 <b id="genCount">0000</b></p>
+       <!-- <p class="hero__hint">画面に触れると、新しいセルが生まれます</p> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- コンセプト -->
+  <section class="section concept" id="concept" aria-labelledby="concept-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <svg class="sec-head__glyph" data-phase="0" viewBox="0 0 4 4" aria-hidden="true"></svg>
+        <h2 id="concept-h">コンセプト</h2>
+        <span class="en" lang="en">Concept</span>
+      </div>
+      <div class="concept__grid">
+        <div class="concept__body reveal">
+          <p class="concept__catch">ひとつの規則から、<br>次の世代が生まれる。</p>
+          <p>画面の奥で動いているのは「ライフゲーム」と呼ばれる仕組みです。隣り合うセルの数を数えるという、たった二つの規則だけで、模様は世代を重ねながら形を変え、ときには自ら動きはじめます。</p>
+          <p>私たちがつくるウェブサイトやアプリも同じです。公開した瞬間が完成ではなく、事業の変化にあわせて次の世代へと更新されていくもの。だからこそ最初に、育ちつづけられる「規則」、つまり構造と設計と運用の仕組みを丁寧に組み立てます。</p>
+          <dl class="rules">
+            <div><dt>誕生</dt><dd>周りに生きたセルがちょうど3つあれば、次の世代で新しく生まれる。</dd></div>
+            <div><dt>生存</dt><dd>周りが2つか3つなら、そのまま次の世代へ生きのびる。</dd></div>
+          </dl>
+        </div>
+        <figure class="diagram reveal" id="diagram">
+          <svg id="diagramSvg" viewBox="0 0 400 128" role="img" aria-labelledby="diagramCap"></svg>
+          <figcaption id="diagramCap">「グライダー」と呼ばれる形は、4世代ごとに元の姿へ戻りながら、斜め下へ一歩ずつ進みつづけます。黄色は、その世代で新しく生まれたセルです。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 事業内容 -->
+  <section class="section services" id="services" aria-labelledby="services-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <svg class="sec-head__glyph" data-phase="1" viewBox="0 0 4 4" aria-hidden="true"></svg>
+        <h2 id="services-h">事業内容</h2>
+        <span class="en" lang="en">Services</span>
+      </div>
+      <p class="services__intro reveal">つくる、動かす、育てる。<br>ウェブとアプリにかかわることを、ひとつの窓口でお引き受けします。</p>
+
+      <article class="svc reveal">
+        <div class="svc__media">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=70" alt="ノートパソコンでウェブサイトのコードを書いている様子" loading="lazy" width="1400" height="1050" onerror="imgFallback(this)">
+        </div>
+        <div>
+          <svg class="svc__icon" viewBox="0 0 44 44" aria-hidden="true">
+            <rect x="5" y="8" width="34" height="26" rx="1.5"/><path d="M5 15h34"/><path d="M15 40h14M22 34v6"/><path d="M11 22h10M11 27h16"/>
+          </svg>
+          <h3>ウェブサイト制作</h3>
+          <span class="svc__en" lang="en">Website</span>
+          <p>会社や店舗の顔となるサイトを、企画から設計、デザイン、実装まで一貫して制作します。スマートフォンでの見やすさ、表示の速さ、公開後の更新しやすさまで考えて組み立てます。</p>
+          <ul class="svc__tags">
+            <li>コーポレートサイト</li><li>ブランドサイト</li><li>採用サイト</li><li>更新しやすい仕組みづくり</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="svc reveal">
+        <div class="svc__media">
+          <img src="https://images.unsplash.com/photo-1582133456304-2f5cb1c2afbb?auto=format&fit=crop&w=1400&q=70" alt="スマートフォンでアプリを操作している手元" loading="lazy" width="1400" height="1050" onerror="imgFallback(this)">
+        </div>
+        <div>
+          <svg class="svc__icon" viewBox="0 0 44 44" aria-hidden="true">
+            <rect x="13" y="4" width="18" height="36" rx="3"/><path d="M19 35h6"/><rect x="17" y="10" width="4" height="4"/><rect x="23" y="10" width="4" height="4"/><rect x="17" y="17" width="4" height="4"/>
+          </svg>
+          <h3>アプリ開発</h3>
+          <span class="svc__en" lang="en">Application</span>
+          <p>日々の業務を楽にするツールから、お客さまが手にするスマートフォンアプリまで。本当に必要な機能を見極め、小さくつくって確かめながら育てていきます。</p>
+          <ul class="svc__tags">
+            <li>スマートフォンアプリ</li><li>ウェブアプリ</li><li>業務システム</li><li>予約・会員機能</li>
+          </ul>
+          <!-- 要確認：アプリ内課金・有料販売を行う場合は特定商取引法に基づく表記が必要です -->
+        </div>
+      </article>
+
+      <article class="svc reveal">
+        <div class="svc__media">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=70" alt="サーバーラックに並ぶ機器と配線" loading="lazy" width="1400" height="1050" onerror="imgFallback(this)">
+        </div>
+        <div>
+          <svg class="svc__icon" viewBox="0 0 44 44" aria-hidden="true">
+            <circle cx="22" cy="22" r="17"/><path d="M5 22h34"/><path d="M22 5c5 5 7 11 7 17s-2 12-7 17c-5-5-7-11-7-17s2-12 7-17z"/>
+          </svg>
+          <h3>インターネットサービス</h3>
+          <span class="svc__en" lang="en">Internet Services</span>
+          <p>サーバーやドメインの管理、公開後の保守と改善、集客のためのデジタル施策まで。つくったものが止まらずに動きつづけるよう、見えない裏側を支えます。</p>
+          <ul class="svc__tags">
+            <li>サーバー・ドメイン管理</li><li>保守・運用</li><li>改善のご提案</li><li>デジタル施策</li>
+          </ul>
+          <!-- 要確認：提供内容は仮です。実際のサービス内容に合わせて修正してください -->
+          <!-- 要確認：自社で通信サービスを提供する場合、電気通信事業の届出の要否をご確認ください -->
+          <!-- 要確認：SNS・広告運用を支援する場合、景品表示法（ステマ規制）への配慮をご検討ください -->
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 写真帯 -->
+  <div class="band" aria-label="公開は、はじまりの世代">
+    <img id="bandImg" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=70" alt="チームでノートパソコンを囲み打ち合わせをする様子" loading="lazy" width="2000" height="1333" onerror="imgFallback(this)">
+    <div class="band__veil"></div>
+    <div class="band__text reveal">
+      <p>公開は、<br>はじまりの世代。</p>
+      <p>数字を見て、声を聞いて、少しずつ更新する。<br>その積み重ねが、事業の力になっていきます。</p>
+    </div>
+  </div>
+
+  <!-- 進め方 -->
+  <section class="section" id="flow" aria-labelledby="flow-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <svg class="sec-head__glyph" data-phase="2" viewBox="0 0 4 4" aria-hidden="true"></svg>
+        <h2 id="flow-h">進め方</h2>
+        <span class="en" lang="en">Process</span>
+      </div>
+      <div class="flow" id="flowList">
+        <svg class="flow__line" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M6 6 H994"/>
+          <path class="draw" d="M6 6 H994"/>
+        </svg>
+        <ol class="flow__steps">
+        <li class="step reveal">
+          <span class="step__no">01</span>
+          <h3>ヒアリング</h3>
+          <p>事業の現在地と、これから目指す姿をうかがいます。</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__no">02</span>
+          <h3>設計</h3>
+          <p>情報の構造と必要な機能を整理し、全体の設計図をつくります。</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__no">03</span>
+          <h3>デザイン</h3>
+          <p>事業の個性が伝わる見た目と、迷わない使いやすさを形にします。</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__no">04</span>
+          <h3>開発</h3>
+          <p>設計にもとづいて実装し、さまざまな端末で動作を確かめます。</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__no">05</span>
+          <h3>公開・運用</h3>
+          <p>公開後も数字と声をもとに、次の世代へ改善を重ねます。</p>
+        </li>
+        </ol>
+      </div>
+      <p class="flow__loop reveal">
+        <svg viewBox="0 0 36 24" aria-hidden="true"><path d="M30 6 A10 10 0 1 0 30 18"/><path d="M26 2 L30 6 L26 10"/></svg>
+        運用で得た気づきは、次のヒアリングへ。この循環が、サイトとアプリを育てていきます。
+      </p>
+    </div>
+  </section>
+
+  <!-- 代表メッセージ（草稿） -->
+  <!-- 要確認：以下の代表メッセージは草稿です。代表者ご本人の確認・修正・承認後に公開してください -->
+  <section class="section message" id="message" aria-labelledby="message-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <svg class="sec-head__glyph" data-phase="3" viewBox="0 0 4 4" aria-hidden="true"></svg>
+        <h2 id="message-h">代表メッセージ</h2>
+        <span class="en" lang="en">Message</span>
+      </div>
+      <div class="message__inner reveal">
+        <p class="message__catch"><span>技術は、</span><span>だれかの次の一歩のために。</span></p>
+        <div class="message__body">
+          <p>インターネットは、規模の大小にかかわらず、あらゆる事業に新しい可能性をひらいてくれます。けれど、その可能性を形にするには、事業のことを深く知り、長く付き合っていける相手が必要だと考えています。</p>
+          <p>私たちは、つくって終わりの制作会社でありたくありません。お客さまの事業とともに世代を重ね、次の時代にも通用する仕組みを一緒に育てていく存在でありたい。その思いを社名に込めました。<!-- 要確認：社名の由来は推測です --></p>
+          <p>ひとつひとつのご縁を大切に、誠実なものづくりを続けてまいります。</p>
+          <p class="message__sign">
+            <small>次世代合同会社　代表社員</small><!-- 要確認：役職名（代表社員）の表記 -->
+            <span>アシク　サイプルージャエド</span><!-- 要確認：氏名の表記 -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 会社概要 -->
+  <section class="section profile" id="company" aria-labelledby="company-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <svg class="sec-head__glyph" data-phase="0" data-shift="1" viewBox="0 0 4 4" aria-hidden="true"></svg>
+        <h2 id="company-h">会社概要</h2>
+        <span class="en" lang="en">Company</span>
+      </div>
+      <div class="profile__grid">
+        <div class="profile__photo reveal">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=70" alt="自然光が入る明るいオフィスの作業スペース" loading="lazy" width="1200" height="1600" onerror="imgFallback(this)">
+          <!-- 要確認：イメージ写真です。実際のオフィス写真ではありません -->
+        </div>
+        <dl class="profile__table reveal">
+          <div><dt>商号</dt><dd>次世代合同会社</dd></div>
+          <div><dt>代表者</dt><dd>代表社員　アシク　サイプルージャエド<!-- 要確認：役職名・氏名表記 --></dd></div>
+          <div><dt>所在地</dt><dd>〒114-0023<br>東京都北区滝野川3丁目35-3<!-- 要確認：建物名・部屋番号の有無 --></dd></div>
+          <div>
+            <dt>事業内容</dt>
+            <dd>
+              <ul>
+                <li>ウェブサイトの企画・制作</li>
+                <li>アプリケーションの企画・開発</li>
+                <li>インターネットサービスの提供・運用</li>
+              </ul>
+            </dd>
+          </div>
+          <!-- 要確認：設立年月日（未確認のため非掲載） -->
+          <!-- 要確認：資本金（未確認のため非掲載） -->
+          <!-- 要確認：従業員数・取引銀行・営業時間（未確認のため非掲載） -->
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <a class="logo" href="#top" aria-label="次世代合同会社 トップへ">
+        <svg class="logo__mark" viewBox="0 0 3 3" aria-hidden="true">
+          <rect x="1" y="0" width=".86" height=".86" fill="#e9c349"/>
+          <rect x="2" y="1" width=".86" height=".86" fill="#ebe7dc"/>
+          <rect x="0" y="2" width=".86" height=".86" fill="#ebe7dc"/>
+          <rect x="1" y="2" width=".86" height=".86" fill="#ebe7dc"/>
+          <rect x="2" y="2" width=".86" height=".86" fill="#ebe7dc"/>
+        </svg>
+        <span>
+          <span class="logo__text">次世代合同会社</span>
+          <span class="logo__sub">Jisedai LLC</span>
+        </span>
+      </a>
+      <nav class="footer__nav" aria-label="フッターナビゲーション">
+        <ul>
+          <li><a href="#concept">コンセプト</a></li>
+          <li><a href="#services">事業内容</a></li>
+          <li><a href="#flow">進め方</a></li>
+          <li><a href="#message">メッセージ</a></li>
+          <li><a href="#company">会社概要</a></li>
+          <!-- 要確認：プライバシーポリシー／特定商取引法に基づく表記ページを設ける場合はここにリンクを追加 -->
+        </ul>
+      </nav>
+      <button class="to-top" id="toTop" aria-label="ページの先頭へ戻る">
+        <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 12V2M2 7l5-5 5 5" stroke="#ebe7dc" stroke-width="1.4" fill="none"/></svg>
+      </button>
+    </div>
+    <p class="footer__copy">&copy; <span id="year">2026</span> Jisedai LLC.</p>
+  </div>
+</footer>
+
+<script>
+/* 画像読み込み失敗時の代替表示 */
+function imgFallback(img){
+  img.onerror = null;
+  var p = img.parentElement;
+  if (p) p.classList.add('img-fallback');
+  if (img.id === 'bandImg') img.style.display = 'none';
+}
+
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var SVGNS = 'http://www.w3.org/2000/svg';
+
+  /* グライダーの4つの位相（4x4の枠内、斜め右下へ進む） */
+  var PHASES = [
+    [[1,0],[2,1],[0,2],[1,2],[2,2]],
+    [[0,1],[2,1],[1,2],[2,2],[1,3]],
+    [[2,1],[0,2],[2,2],[1,3],[2,3]],
+    [[1,1],[2,2],[3,2],[1,3],[2,3]]
+  ];
+  /* 各位相で「新しく生まれた」セル（前の位相に存在しなかったセル） */
+  function newbornOf(i){
+    var prev = i === 0 ? PHASES[3].map(function(c){return [c[0]-1,c[1]-1];}) : PHASES[i-1];
+    return PHASES[i].filter(function(c){
+      return !prev.some(function(p){return p[0]===c[0] && p[1]===c[1];});
+    });
+  }
+  function isIn(list,c){return list.some(function(p){return p[0]===c[0]&&p[1]===c[1];});}
+  function drawGlider(svg,phase,shift){
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var born = newbornOf(phase);
+    var s = shift || 0;
+    PHASES[phase].forEach(function(c){
+      var r = document.createElementNS(SVGNS,'rect');
+      var x = Math.min(c[0] + s, 3), y = Math.min(c[1] + s, 3);
+      r.setAttribute('x', x + .08); r.setAttribute('y', y + .08);
+      r.setAttribute('width', .84); r.setAttribute('height', .84);
+      if (isIn(born,c)) r.setAttribute('class','is-new');
+      svg.appendChild(r);
+    });
+  }
+
+  /* 見出し横の小さなグライダー（ページを下るごとに位相が進む） */
+  document.querySelectorAll('.sec-head__glyph').forEach(function(svg){
+    drawGlider(svg, +svg.dataset.phase, +(svg.dataset.shift || 0));
+  });
+
+  /* ---------- ヘッダー ---------- */
+  var header = document.getElementById('header');
+  var rail = document.getElementById('rail');
+  function onScrollHeader(){
+    var y = window.scrollY;
+    header.classList.toggle('is-scrolled', y > 40);
+    rail.classList.toggle('is-visible', y > window.innerHeight * .5);
+  }
+
+  /* ---------- メニュー ---------- */
+  var menuBtn = document.getElementById('menuBtn');
+  var nav = document.getElementById('globalNav');
+  function setMenu(open){
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    nav.classList.toggle('is-open', open);
+    document.body.classList.toggle('is-locked', open);
+    if (open) { var a = nav.querySelector('a'); if (a) a.focus(); }
+  }
+  menuBtn.addEventListener('click', function(){ setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'); });
+  nav.addEventListener('click', function(e){ if (e.target.closest('a') && nav.classList.contains('is-open')) setMenu(false); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) { setMenu(false); menuBtn.focus(); }
+  });
+  window.addEventListener('resize', function(){ if (window.innerWidth > 768 && nav.classList.contains('is-open')) setMenu(false); });
+
+  /* ---------- スクロール表示 ---------- */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+    });
+  }, {threshold:.18, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.reveal, #flowList').forEach(function(el){ io.observe(el); });
+
+  /* ---------- コンセプト図：グライダーの5世代 ---------- */
+  (function buildDiagram(){
+    var svg = document.getElementById('diagramSvg');
+    var fig = document.getElementById('diagram');
+    var frames = [0,1,2,3,4];
+    var box = 64, cell = box / 5, gap = 20, top = 16;
+    frames.forEach(function(f, i){
+      var ox = i * (box + gap) + 2;
+      var g = document.createElementNS(SVGNS,'g');
+      for (var k = 0; k <= 5; k++){
+        var h = document.createElementNS(SVGNS,'path');
+        h.setAttribute('class','gridline');
+        h.setAttribute('d','M'+ox+' '+(top+k*cell)+' h'+box+' M'+(ox+k*cell)+' '+top+' v'+box);
+        g.appendChild(h);
+      }
+      var phase = f % 4, shift = f === 4 ? 1 : 0;
+      var born = newbornOf(phase);
+      PHASES[phase].forEach(function(c){
+        var r = document.createElementNS(SVGNS,'rect');
+        r.setAttribute('x', ox + (c[0] + shift) * cell + 1.5);
+        r.setAttribute('y', top + (c[1] + shift) * cell + 1.5);
+        r.setAttribute('width', cell - 3); r.setAttribute('height', cell - 3);
+        r.setAttribute('class', 'cell' + (isIn(born,c) ? ' is-new' : ''));
+        r.style.transitionDelay = (i * 0.35) + 's';
+        g.appendChild(r);
+      });
+      var t = document.createElementNS(SVGNS,'text');
+      t.setAttribute('class','lbl'); t.setAttribute('x', ox); t.setAttribute('y', top + box + 26);
+      t.textContent = '世代 ' + (i + 1);
+      g.appendChild(t);
+      if (i < frames.length - 1){
+        var a = document.createElementNS(SVGNS,'path');
+        a.setAttribute('class','arrow');
+        var ax = ox + box + 4, ay = top + box / 2;
+        a.setAttribute('d','M'+ax+' '+ay+' h'+(gap-8)+' M'+(ax+gap-12)+' '+(ay-3)+' l4 3 l-4 3');
+        g.appendChild(a);
+      }
+      svg.appendChild(g);
+    });
+    svg.setAttribute('viewBox','0 0 ' + (frames.length * (box + gap) - gap + 4) + ' ' + (top + box + 36));
+    new IntersectionObserver(function(es, obs){
+      es.forEach(function(e){ if (e.isIntersecting){ fig.classList.add('is-in'); obs.disconnect(); } });
+    }, {threshold:.3}).observe(fig);
+  })();
+
+  /* ---------- 進め方の線の長さ ---------- */
+  var drawPath = document.querySelector('.flow__line .draw');
+  if (drawPath && drawPath.getTotalLength) drawPath.style.setProperty('--len', Math.ceil(drawPath.getTotalLength()));
+
+  /* ---------- スクロールレール ---------- */
+  var railGlider = document.getElementById('railGlider');
+  var railGen = document.getElementById('railGen');
+  var lastPhase = -1;
+  function onScrollRail(){
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    var trackH = rail.clientHeight - 22;
+    railGlider.style.transform = 'translateY(' + (p * trackH) + 'px)';
+    var gen = Math.floor(p * 120);
+    var phase = gen % 4;
+    if (phase !== lastPhase){ drawGlider(railGlider, phase, 0); lastPhase = phase; }
+    railGen.textContent = '世代 ' + String(gen).padStart(3,'0');
+  }
+
+  /* ---------- 写真帯のゆるやかな視差 ---------- */
+  var bandImg = document.getElementById('bandImg');
+  function onScrollBand(){
+    if (reduce || !bandImg) return;
+    var r = bandImg.parentElement.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > window.innerHeight) return;
+    var k = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
+    bandImg.style.transform = 'translateY(' + (k * -40) + 'px)';
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ onScrollHeader(); onScrollRail(); onScrollBand(); ticking = false; });
+  }, {passive:true});
+  window.addEventListener('resize', onScrollRail);
+  onScrollHeader(); onScrollRail(); onScrollBand();
+
+  document.getElementById('toTop').addEventListener('click', function(){
+    window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'});
+    document.querySelector('.logo').focus({preventScroll:true});
+  });
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- ヒーロー：ライフゲーム ---------- */
+  (function life(){
+    var canvas = document.getElementById('life');
+    var hero = canvas.parentElement;
+    var ctx = canvas.getContext('2d');
+    var genEl = document.getElementById('genCount');
+    var size, cols, rows, grid, next, age, gen = 0, running = true, visible = true, last = 0;
+    var INTERVAL = 130;
+    var COLORS = ['#e9c349','rgba(233,195,73,.5)','rgba(235,231,220,.5)','rgba(235,231,220,.2)'];
+
+    function idx(x,y){ return ((y + rows) % rows) * cols + ((x + cols) % cols); }
+
+    function seed(){
+      grid = new Uint8Array(cols * rows);
+      next = new Uint8Array(cols * rows);
+      age = new Uint16Array(cols * rows);
+      for (var i = 0; i < grid.length; i++) grid[i] = Math.random() < .17 ? 1 : 0;
+      gen = 0;
+    }
+    function addGlider(cx, cy){
+      var dir = [[1,1],[-1,1],[1,-1],[-1,-1]][Math.floor(Math.random()*4)];
+      PHASES[0].forEach(function(c){
+        var i = idx(cx + (c[0]-1) * dir[0], cy + (c[1]-1) * dir[1]);
+        grid[i] = 1; age[i] = 0;
+      });
+    }
+    function resize(){
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var w = hero.clientWidth, h = hero.clientHeight;
+      size = w < 768 ? 11 : 14;
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      var nc = Math.ceil(w / size), nr = Math.ceil(h / size);
+      if (nc !== cols || nr !== rows){ cols = nc; rows = nr; seed(); }
+      draw();
+    }
+    function step(){
+      var pop = 0;
+      for (var y = 0; y < rows; y++){
+        for (var x = 0; x < cols; x++){
+          var n = grid[idx(x-1,y-1)] + grid[idx(x,y-1)] + grid[idx(x+1,y-1)]
+                + grid[idx(x-1,y)]                     + grid[idx(x+1,y)]
+                + grid[idx(x-1,y+1)] + grid[idx(x,y+1)] + grid[idx(x+1,y+1)];
+          var i = y * cols + x, alive = grid[i];
+          var v = (alive && (n === 2 || n === 3)) || (!alive && n === 3) ? 1 : 0;
+          next[i] = v;
+          if (v){ age[i] = alive ? Math.min(age[i] + 1, 999) : 0; pop++; } else age[i] = 0;
+        }
+      }
+      var t = grid; grid = next; next = t;
+      gen++;
+      /* 世代が落ち着いたら、新しいグライダーを送り込む */
+      if (pop < cols * rows * .035 || gen % 360 === 0){
+        for (var k = 0; k < 6; k++) addGlider(Math.floor(Math.random()*cols), Math.floor(Math.random()*rows));
+      }
+    }
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      var s = size - 2;
+      for (var b = 0; b < 4; b++){
+        ctx.fillStyle = COLORS[b];
+        ctx.beginPath();
+        for (var i = 0; i < grid.length; i++){
+          if (!grid[i]) continue;
+          var a = age[i], bucket = a === 0 ? 0 : a < 3 ? 1 : a < 12 ? 2 : 3;
+          if (bucket !== b) continue;
+          ctx.rect((i % cols) * size + 1, Math.floor(i / cols) * size + 1, s, s);
+        }
+        ctx.fill();
+      }
+      genEl.textContent = String(gen).padStart(4,'0');
+    }
+    function loop(t){
+      if (running && visible && t - last > INTERVAL){ step(); draw(); last = t; }
+      requestAnimationFrame(loop);
+    }
+    function pointerAdd(e){
+      var r = canvas.getBoundingClientRect();
+      var x = Math.floor((e.clientX - r.left) / size), y = Math.floor((e.clientY - r.top) / size);
+      addGlider(x, y); addGlider(x + 4, y + 3);
+      draw();
+    }
+
+    resize();
+    canvas.addEventListener('pointerdown', pointerAdd);
+    var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(resize, 200); });
+    new IntersectionObserver(function(es){ visible = es[0].isIntersecting; }).observe(hero);
+    document.addEventListener('visibilitychange', function(){ running = !document.hidden; });
+
+    if (reduce){
+      for (var i = 0; i < 40; i++) step();
+      draw();
+    } else {
+      requestAnimationFrame(loop);
+    }
+  })();
+})();
+</script>
+</body>
+</html>
